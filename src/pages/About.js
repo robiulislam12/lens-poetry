@@ -1,12 +1,12 @@
 import React from 'react'
 import useTitles from '../hooks/useTitles'
 
-const Home = () => {
+const About = () => {
     // set page title
-    useTitles("Home")
+    useTitles('About')
   return (
-    <div className='text-3xl '>Home</div>
+    <div>About</div>
   )
 }
 
-export default Home
+export default About

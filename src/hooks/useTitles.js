@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 
-const useTitles = ({title}) => {
+const useTitles = title => {
     useEffect(() =>{
-        document.title = title
+        window.document.title = `${title} - React App`;
     }, [title])
 }
 
