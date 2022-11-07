@@ -1,8 +1,10 @@
-import { Navbar, Dropdown, Avatar } from "flowbite-react";
-import React from "react";
+import { Navbar, Dropdown, Avatar, Button } from "flowbite-react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   return (
     <Navbar rounded={true}>
       <Link to="/">
@@ -18,29 +20,40 @@ const Header = () => {
         </Navbar.Brand>
       </Link>
       <div className="flex md:order-2">
-        <Dropdown
-          arrowIcon={false}
-          inline={true}
-          label={
-            <Avatar
-              alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              rounded={true}
-            />
-          }
-        >
-          <Dropdown.Header>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">
-              name@flowbite.com
-            </span>
-          </Dropdown.Header>
-          <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item>Settings</Dropdown.Item>
-          <Dropdown.Item>Earnings</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
-        </Dropdown>
+        {user?.uid ? (
+          <Dropdown
+            arrowIcon={false}
+            inline={true}
+            label={
+              <Avatar
+                alt="User settings"
+                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                rounded={true}
+              />
+            }
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">Bonnie Green</span>
+              <span className="block truncate text-sm font-medium">
+                name@flowbite.com
+              </span>
+            </Dropdown.Header>
+            <Dropdown.Item>Dashboard</Dropdown.Item>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item>Sign out</Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <Link to='/login'>
+            <Button
+              gradientDuoTone="greenToBlue"
+              className="uppercase font-semibold "
+            >
+              Login
+            </Button>
+          </Link>
+        )}
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
@@ -53,7 +66,9 @@ const Header = () => {
         </Link>
 
         <Link to="/services">
-          <Navbar.Link className="font-semibold uppercase">Services</Navbar.Link>
+          <Navbar.Link className="font-semibold uppercase">
+            Services
+          </Navbar.Link>
         </Link>
         <Link to="/blogs">
           <Navbar.Link className="font-semibold uppercase">Blogs</Navbar.Link>
