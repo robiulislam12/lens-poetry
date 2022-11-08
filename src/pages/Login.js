@@ -1,15 +1,18 @@
 import { Button, Label, TextInput, Card } from "flowbite-react";
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useTitles from "../hooks/useTitles";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const Login = () => {
 
-  const {setUser, signInGoogle} = useContext(AuthContext);
+  const {setUser, signInGoogle, login} = useContext(AuthContext);
 
   // Navigate user
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   // Handle google signup
   const handleGoogleSignIn = () =>{
@@ -17,18 +20,37 @@ const Login = () => {
       .then(result =>{
           setUser(result.user);
           alert('User Sign');
-          navigate('/')
+          navigate(from, { replace: true });
       })
       .catch(err => console.log(err.message))
+  }
+  const handleLogin = (e) =>{
+    e.preventDefault()
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // user login 
+    login(email, password)
+    .then((result) =>{
+      const user = result.user;
+      setUser(user);
+      navigate(from, { replace: true });
+    })
+    .catch(err => console.error(err.message))
+
+    form.reset();
   }
 
   // set page title
   useTitles("Login");
+
+
   return (
     <div className="max-w-sm mx-auto py-12">
       <Card>
       <h3 className="text-2xl">Please Login</h3>
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onClick={handleLogin}>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="email1" value="Your email" />
@@ -36,6 +58,7 @@ const Login = () => {
             <TextInput
               id="email1"
               type="email"
+              name="email"
               placeholder="name@flowbite.com"
               required={true}
             />
@@ -44,7 +67,7 @@ const Login = () => {
             <div className="mb-2 block">
               <Label htmlFor="password1" value="Your password" />
             </div>
-            <TextInput id="password1" type="password" required={true} />
+            <TextInput id="password1" type="password" required={true} name='password'/>
           </div>
           <div className="flex items-center gap-2">
             <Label htmlFor="remember" className="hover:underline cursor-pointer">Forgot password?</Label>

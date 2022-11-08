@@ -2,14 +2,21 @@ import React, { useContext } from "react";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import Img from "../assets/hero-bg.jpg";
-import { Avatar, TextInput, Label, Button, Textarea } from "flowbite-react";
+import {
+  Avatar,
+  TextInput,
+  Label,
+  Button,
+  Textarea,
+  Rating,
+} from "flowbite-react";
 import useTitles from "../hooks/useTitles";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Link } from "react-router-dom";
+import Ratings from "../components/Ratings";
 
 const SingleService = () => {
-
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   // Set page title
   useTitles("Single Service");
@@ -48,84 +55,54 @@ const SingleService = () => {
           </div>
         </div>
       </PhotoProvider>
+
+      {/* See All reviews */}
       <div className="bg-white p-4 rounded-lg shadow my-4">
+        {/* All Reviews */}
         <h2 className="text-3xl font-semibold">All Reviews</h2>
-        <div className="flex flex-wrap gap-2 py-4 border-b">
-          <Avatar
-            img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-            rounded={true}
-            bordered={true}
-          >
-            <div className="font-medium dark:text-white">
-              <div>Jese Leos</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                Joined in August 2014
-              </div>
-            </div>
-          </Avatar>
-          <p className="text-lg text-gray-500 pl-12">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-            quisquam autem maiores voluptatibus, ducimus inventore dolores
-            expedita vitae molestias beatae libero quos commodi est ut excepturi
-            repellendus officiis quas blanditiis!
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-2 py-4 border-b">
-          <Avatar
-            img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-            rounded={true}
-            bordered={true}
-          >
-            <div className="font-medium dark:text-white">
-              <div>Jese Leos</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                Joined in August 2014
-              </div>
-            </div>
-          </Avatar>
-          <p className="text-lg text-gray-500 pl-12">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-            quisquam autem maiores voluptatibus, ducimus inventore dolores
-            expedita vitae molestias beatae libero quos commodi est ut excepturi
-            repellendus officiis quas blanditiis!
-          </p>
-        </div>
+        <Ratings value={5}/>
+        <Ratings value={4}/>
+        <Ratings value={4.5}/>
+        
       </div>
       {/* Review section */}
       <div className="bg-white p-4 rounded-lg shadow my-4">
-      <h2 className="text-3xl font-semibold">Add your review</h2>
-        {user?.uid ?
-        <form className="flex flex-col gap-4 py-4">
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="num" value="Add your ratings" />
+        <h2 className="text-3xl font-semibold">Add your review</h2>
+        {user?.uid ? (
+          <form className="flex flex-col gap-4 py-4">
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="num" value="Add your ratings" />
+              </div>
+              <TextInput
+                id="num"
+                type="number"
+                placeholder="Your rattings for this content"
+                required={true}
+                maxLength="1"
+              />
             </div>
-            <TextInput
-              id="num"
-              type="number"
-              placeholder="Your rattings for this content"
-              required={true}
-              maxLength="1"
-            />
-          </div>
-          <div id="textarea">
-            <div className="mb-2 block">
-              <Label htmlFor="comment" value="Your message" />
+            <div id="textarea">
+              <div className="mb-2 block">
+                <Label htmlFor="comment" value="Your message" />
+              </div>
+              <Textarea
+                id="comment"
+                placeholder="Leave a comment..."
+                required={true}
+                rows={4}
+              />
             </div>
-            <Textarea
-              id="comment"
-              placeholder="Leave a comment..."
-              required={true}
-              rows={4}
-            />
-          </div>
-          <Button type="submit">Add a review</Button>
-        </form>  :  <>
-          <h2 className="text-2xl">You need to login first</h2>
-          <Link to='/login'>
-            <Button type="submit">Login Page</Button>
-          </Link>
-        </>}
+            <Button type="submit">Add a review</Button>
+          </form>
+        ) : (
+          <>
+            <h2 className="text-2xl">You need to login first</h2>
+            <Link to="/login">
+              <Button type="submit">Login Page</Button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

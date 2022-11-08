@@ -25,8 +25,8 @@ const Header = () => {
             label={
               <Avatar
                 alt="User settings"
-                img={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
-                // img={user?.photoURL ? user?.photoURL : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+                // img={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+                img={user?.photoURL ? user?.photoURL : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
                 rounded={true}
               />
             }
@@ -37,7 +37,6 @@ const Header = () => {
                 {user?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item>Add a review</Dropdown.Item>
             <Dropdown.Item>My Review</Dropdown.Item>
             <Dropdown.Item>Add a Service</Dropdown.Item>
             <Dropdown.Divider />
