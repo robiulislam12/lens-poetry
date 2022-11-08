@@ -1,8 +1,8 @@
 import { Avatar, Rating } from "flowbite-react";
 
-const Ratings = ({value}) => {
+const Ratings = ({value, border}) => {
   return (
-    <div className="flex flex-wrap gap-2 py-4 border-b">
+    <div className={`flex flex-wrap gap-2 py-4 ${!border && 'border-b'}`}>
       <div className="flex justify-between items-center w-full">
         <Avatar
           img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"

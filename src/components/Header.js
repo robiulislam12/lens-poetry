@@ -10,11 +10,7 @@ const Header = () => {
     <Navbar rounded={true}>
       <Link to="/">
         <Navbar.Brand>
-          <img
-            src={Logo}
-            className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
-          />
+          <img src={Logo} className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
         </Navbar.Brand>
       </Link>
       <div className="flex md:order-2">
@@ -26,7 +22,11 @@ const Header = () => {
               <Avatar
                 alt="User settings"
                 // img={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
-                img={user?.photoURL ? user?.photoURL : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+                img={
+                  user?.photoURL
+                    ? user?.photoURL
+                    : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                }
                 rounded={true}
               />
             }
@@ -37,13 +37,17 @@ const Header = () => {
                 {user?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item>My Review</Dropdown.Item>
-            <Dropdown.Item>Add a Service</Dropdown.Item>
+            <Dropdown.Item>
+              <Link to="my-review">My Review</Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Link to="add-service">Add a Service</Link>
+            </Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={logOut}>Sign out</Dropdown.Item>
           </Dropdown>
         ) : (
-          <Link to='/login'>
+          <Link to="/login">
             <Button
               gradientDuoTone="greenToBlue"
               className="uppercase font-semibold "
