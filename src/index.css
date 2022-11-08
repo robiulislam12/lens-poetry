@@ -18,9 +18,16 @@ body{
   font-family: 'Lato', sans-serif;
 }
 
+
 a{
   text-decoration: none;
 }
 ul li{
   list-style: none;
+}
+
+@media only screen and (max-width: 667px) {
+  .sm-p-4, .container{
+    margin: 0 10px;
+  }
 }

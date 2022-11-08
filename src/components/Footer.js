@@ -14,7 +14,7 @@ const Footer = () => {
                 alt="Lens Poetry Logo"
               />
               <div className="mt-4">
-                <p className="text-base w-1/2 text-gray-500">
+                <p className="text-base lg:w-1/2 text-gray-500 sm:w-full">
                   We are follow our passion, wildlife photography is the most rated and risky photography. But here I will find my happiness.
                 </p>
                 <FooterF.Copyright href="/" by="Lens Poetry" year={2022} />
