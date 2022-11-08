@@ -3,7 +3,41 @@ import React from 'react'
 
 const AddAService = () => {
 
-    const handleSubmit = (e) => {}
+    const handleSubmit = (e) => {
+
+      e.preventDefault();
+
+      const from = e.target;
+      const title = from.title.value;
+      const price = from.price.value;
+      const photoURL = from.photo.value;
+      const description = from.description.value;
+      console.log({
+        title,
+        price,
+        photoURL,
+        description
+      })
+
+      // post service
+      fetch('http://localhost:5000/services', {
+        method: "POST",
+        headers: {
+          'content-type' : 'application/json'
+        },
+        body: JSON.stringify({
+          title,
+          price,
+          photoURL,
+          description
+        })
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+
+      // reset from
+      from.reset();
+    }
 
   return (
     <div className="max-w-lg mx-auto py-12">
