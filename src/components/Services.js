@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Service from "./Service";
 
 const Services = () => {
+
+  const [services, setServices] = useState([]);
+
+  useEffect(()=>{
+    fetch('https://lens-poetry.vercel.app/servicesItem')
+    .then(res => res.json())
+    .then(data => setServices(data))
+  },[])
+
   return (
     <div className="container mx-auto py-12">
       <div className="pb-6 text-center">
@@ -14,9 +23,11 @@ const Services = () => {
         </p>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
-        <Service />
-        <Service />
-        <Service />
+      {
+          services.map(service => {
+            return <Service key={service._id} service={service}/>
+          })
+        }
       </div>
       <div className="mt-10 text-center">
         <Link to="/services">

@@ -20,7 +20,7 @@ const AddAService = () => {
       })
 
       // post service
-      fetch('http://localhost:5000/services', {
+      fetch('https://lens-poetry.vercel.app/services', {
         method: "POST",
         headers: {
           'content-type' : 'application/json'

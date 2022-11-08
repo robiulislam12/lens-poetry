@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 
-const Service = () => {
+const Service = ({service}) => {
+  const {title, photoURL, price, description, _id} = service;
   return (
     <div className="max-w-sm">
       <PhotoProvider>
         <Card>
-          <PhotoView src="https://flowbite.com/docs/images/blog/image-1.jpg">
-            <img src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" className="rounded"/>
+          <PhotoView src={photoURL}>
+            <img src={photoURL} alt="" className="rounded h-60"/>
           </PhotoView>
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Noteworthy technology acquisitions 2021
+            {title}
           </h5>
           <p className="font-normal text-gray-700 dark:text-gray-400">
-            Here are the biggest enterprise technology acquisitions of 2021 so
-            far, in reverse chronological order.
+            {description.slice(0, 150) + ' read more(...)'}
           </p>
           <Rating>
             <Rating.Star />
@@ -32,10 +32,10 @@ const Service = () => {
           <hr />
           <div className="flex items-center justify-between">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
-              $599
+              ${price}
             </span>
             <Link
-              to="/services/2"
+              to={`/services/${_id}`}
               className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Details

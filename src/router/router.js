@@ -32,6 +32,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/services',
+                loader: () => fetch('https://lens-poetry.vercel.app/services'),
                 element: <Services/>
             },
             {
