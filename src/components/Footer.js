@@ -1,56 +1,56 @@
-import React from "react";
-
+import { Footer as FooterF } from "flowbite-react";
+import Logo from "../assets/lens-poetry.png";
 
 const Footer = () => {
   return (
-    <Footer container={true}>
-      <div className="w-full">
-        <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
-          <div>
-            <Footer.Brand
-              href="https://flowbite.com"
-              src="https://flowbite.com/docs/images/logo.svg"
-              alt="Flowbite Logo"
-              name="Flowbite"
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+    <>
+      <FooterF container={true}>
+        <div className="container mx-auto">
+          <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
-              <Footer.Title title="about" />
-              <Footer.LinkGroup col={true}>
-                <Footer.Link href="#">Flowbite</Footer.Link>
-                <Footer.Link href="#">Tailwind CSS</Footer.Link>
-              </Footer.LinkGroup>
+              <FooterF.Brand
+                href="/"
+                src={Logo}
+                alt="Lens Poetry Logo"
+              />
+              <div className="mt-4">
+                <p className="text-base w-1/2 text-gray-500">
+                  We are follow our passion, wildlife photography is the most rated and risky photography. But here I will find my happiness.
+                </p>
+                <FooterF.Copyright href="/" by="Lens Poetry" year={2022} />
+              </div>
             </div>
-            <div>
-              <Footer.Title title="Follow us" />
-              <Footer.LinkGroup col={true}>
-                <Footer.Link href="#">Github</Footer.Link>
-                <Footer.Link href="#">Discord</Footer.Link>
-              </Footer.LinkGroup>
-            </div>
-            <div>
-              <Footer.Title title="Legal" />
-              <Footer.LinkGroup col={true}>
-                <Footer.Link href="#">Privacy Policy</Footer.Link>
-                <Footer.Link href="#">Terms & Conditions</Footer.Link>
-              </Footer.LinkGroup>
+            <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+              <div>
+                <FooterF.Title title="Quick Links" />
+                <FooterF.LinkGroup col={true}>
+                  <FooterF.Link href="/home">Home</FooterF.Link>
+                  <FooterF.Link href="/about">About</FooterF.Link>
+                  <FooterF.Link href="/services">Services</FooterF.Link>
+                  <FooterF.Link href="/blogs">Blogs</FooterF.Link>
+                </FooterF.LinkGroup>
+              </div>
+              <div>
+                <FooterF.Title title="Follow us" />
+                <FooterF.LinkGroup col={true}>
+                  <FooterF.Link href="#">Github</FooterF.Link>
+                  <FooterF.Link href="#">Facebook</FooterF.Link>
+                  <FooterF.Link href="#">Instagram</FooterF.Link>
+                  <FooterF.Link href="#">Twitter</FooterF.Link>
+                </FooterF.LinkGroup>
+              </div>
+              <div>
+                <FooterF.Title title="Legal" />
+                <FooterF.LinkGroup col={true}>
+                  <FooterF.Link href="#">Privacy Policy</FooterF.Link>
+                  <FooterF.Link href="#">Terms & Conditions</FooterF.Link>
+                </FooterF.LinkGroup>
+              </div>
             </div>
           </div>
         </div>
-        <Footer.Divider />
-        <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <Footer.Copyright href="#" by="Flowbite™" year={2022} />
-          {/* <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            <Footer.Icon href="#" icon={BsFacebook} />
-            <Footer.Icon href="#" icon={BsInstagram} />
-            <Footer.Icon href="#" icon={BsTwitter} />
-            <Footer.Icon href="#" icon={BsGithub} />
-            <Footer.Icon href="#" icon={BsDribbble} />
-          </div> */}
-        </div>
-      </div>
-    </Footer>
+      </FooterF>
+    </>
   );
 };
 
