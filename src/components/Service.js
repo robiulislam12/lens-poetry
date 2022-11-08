@@ -1,14 +1,17 @@
 import { Card, Rating } from "flowbite-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 const Service = () => {
   return (
     <div className="max-w-sm">
-        <Card
-          imgAlt="Meaningful alt text for an image that is not purely decorative"
-          imgSrc="https://flowbite.com/docs/images/blog/image-1.jpg"
-        >
+      <PhotoProvider>
+        <Card>
+          <PhotoView src="https://flowbite.com/docs/images/blog/image-1.jpg">
+            <img src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" className="rounded"/>
+          </PhotoView>
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             Noteworthy technology acquisitions 2021
           </h5>
@@ -39,6 +42,7 @@ const Service = () => {
             </Link>
           </div>
         </Card>
+        </PhotoProvider>
     </div>
   );
 };
