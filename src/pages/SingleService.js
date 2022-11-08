@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import Img from "../assets/hero-bg.jpg";
 import { Avatar, TextInput, Label, Button, Textarea } from "flowbite-react";
 import useTitles from "../hooks/useTitles";
+import { AuthContext } from "../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 
 const SingleService = () => {
+
+  const {user} = useContext(AuthContext);
+
   // Set page title
   useTitles("Single Service");
 
@@ -86,8 +91,10 @@ const SingleService = () => {
           </p>
         </div>
       </div>
+      {/* Review section */}
       <div className="bg-white p-4 rounded-lg shadow my-4">
-        <h2 className="text-3xl font-semibold">Add your review</h2>
+      <h2 className="text-3xl font-semibold">Add your review</h2>
+        {user?.uid ?
         <form className="flex flex-col gap-4 py-4">
           <div>
             <div className="mb-2 block">
@@ -113,7 +120,12 @@ const SingleService = () => {
             />
           </div>
           <Button type="submit">Add a review</Button>
-        </form>
+        </form>  :  <>
+          <h2 className="text-2xl">You need to login first</h2>
+          <Link to='/login'>
+            <Button type="submit">Login Page</Button>
+          </Link>
+        </>}
       </div>
     </div>
   );

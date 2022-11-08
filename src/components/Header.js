@@ -5,7 +5,7 @@ import { AuthContext } from "../contexts/AuthProvider";
 import Logo from "../assets/lens-poetry.png";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   return (
     <Navbar rounded={true}>
       <Link to="/">
@@ -25,22 +25,23 @@ const Header = () => {
             label={
               <Avatar
                 alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                img={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+                // img={user?.photoURL ? user?.photoURL : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
                 rounded={true}
               />
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">Bonnie Green</span>
+              <span className="block text-sm">{user?.displayName}</span>
               <span className="block truncate text-sm font-medium">
-                name@flowbite.com
+                {user?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item>Dashboard</Dropdown.Item>
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Item>Add a review</Dropdown.Item>
+            <Dropdown.Item>My Review</Dropdown.Item>
+            <Dropdown.Item>Add a Service</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item>Sign out</Dropdown.Item>
+            <Dropdown.Item onClick={logOut}>Sign out</Dropdown.Item>
           </Dropdown>
         ) : (
           <Link to='/login'>
