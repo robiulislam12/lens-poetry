@@ -1,5 +1,7 @@
 import { Button, Label, TextInput, Card, Textarea } from 'flowbite-react'
 import React from 'react'
+import toast from 'react-hot-toast';
+import useTitles from '../hooks/useTitles';
 
 const AddAService = () => {
 
@@ -33,11 +35,18 @@ const AddAService = () => {
         })
       })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        if(data.acknowledged){
+          toast.success('Service Added Successfully!!')
+        }
+      })
 
       // reset from
       from.reset();
     }
+
+    // set page title
+    useTitles('Add a review')
 
   return (
     <div className="max-w-lg mx-auto py-12">

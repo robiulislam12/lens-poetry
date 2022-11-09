@@ -11,6 +11,7 @@ import useTitles from "../hooks/useTitles";
 import { AuthContext } from "../contexts/AuthProvider";
 import { Link, useLoaderData } from "react-router-dom";
 import Ratings from "../components/Ratings";
+import toast from "react-hot-toast";
 
 const SingleService = () => {
 
@@ -56,7 +57,11 @@ const SingleService = () => {
       })
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      if(data.acknowledged){
+        toast.success('Review Added Successfully!!')
+      }
+    })
 
     // reset from
     from.reset();
