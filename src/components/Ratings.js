@@ -1,6 +1,6 @@
 import { Avatar, Rating } from "flowbite-react";
 
-const Ratings = ({value, border, review}) => {
+const Ratings = ({ border, review}) => {
 
   const comment = review?.comment;
 
@@ -27,7 +27,7 @@ const Ratings = ({value, border, review}) => {
         {/* Ratings */}
         <Rating className="border-2 px-3 py-0 rounded-full border-teal-500">
           <p className="mr-2 text-sm font-bold text-gray-900 dark:text-white">
-            {value}
+            {review?.ratings}
           </p>
           <Rating.Star />
         </Rating>

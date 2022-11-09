@@ -51,7 +51,8 @@ const SingleService = () => {
         },
         ratings,
         comment,
-        email: user?.email
+        email: user?.email,
+        postId: _id
       })
     })
     .then(res => res.json())
@@ -62,13 +63,12 @@ const SingleService = () => {
   }
 
   useEffect(() => {
-    fetch(`https://lens-poetry.vercel.app/review`)
+    fetch(`https://lens-poetry.vercel.app/review?postId=${_id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setReviews(data);
       });
-  }, [user?.email]);
+  }, [user?.email,setReviews, _id, reviews]);
 
   // Set page title
   useTitles(title);
@@ -99,7 +99,7 @@ const SingleService = () => {
 
         {
           reviews.map(review => {
-            return <Ratings key={review._id} value={5} review={review}/>
+            return <Ratings key={review._id} review={review}/>
           })
         }
         
