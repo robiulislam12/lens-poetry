@@ -17,12 +17,8 @@ const MyReview = () => {
       .then((data) => {
         setReviews(data);
       });
-  }, [user?.email, reviews]);
+  }, [user?.email]);
 
-  // handle edit
-  const handleEdit = (id) => {
-    setVisible(true);
-  };
   // handle delete
   const handleDelete = (id) => {
     fetch(`https://lens-poetry.vercel.app/review/${id}`, {
@@ -57,9 +53,7 @@ const MyReview = () => {
           <Review
             key={review._id}
             handleDelete={handleDelete}
-            handleEdit={handleEdit}
             review={review}
-            visible={visible}
             setVisible={setVisible}
           />
         ))}

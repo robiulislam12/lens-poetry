@@ -41,7 +41,7 @@ const SingleService = () => {
       },
       body: JSON.stringify({
         postDetails: {
-          _id,
+          postId: _id,
           title,
         },
         userDetails: {

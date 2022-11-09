@@ -12,7 +12,7 @@ const Services = () => {
   return (
     <div className="container mx-auto py-12">
       <div className="pb-6 text-center">
-        <h2 className="text-5xl">Take a Service {services.length}</h2>
+        <h2 className="text-5xl">Take a Service</h2>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
         {
