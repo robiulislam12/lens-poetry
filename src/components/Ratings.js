@@ -1,18 +1,26 @@
 import { Avatar, Rating } from "flowbite-react";
 
-const Ratings = ({value, border}) => {
+const Ratings = ({value, border, review}) => {
+
+  const comment = review?.comment;
+
+  const userDetails = review?.userDetails;
+
+  // user image
+  const userImg = userDetails?.userPhoto ? userDetails?.userPhoto : "https://flowbite.com/docs/images/people/profile-picture-5.jpg";
+
   return (
     <div className={`flex flex-wrap gap-2 py-4 ${!border && 'border-b'}`}>
       <div className="flex justify-between items-center w-full">
         <Avatar
-          img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+          img={userImg}
           rounded={true}
           bordered={true}
         >
           <div className="font-medium dark:text-white">
-            <div>Jese Leos</div>
+            <div>{userDetails?.userName}</div>
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              Joined in August 2014
+              Joined in {userDetails?.userJoinDate}
             </div>
           </div>
         </Avatar>
@@ -25,10 +33,7 @@ const Ratings = ({value, border}) => {
         </Rating>
       </div>
       <p className="text-lg text-gray-500 pl-12">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa quisquam
-        autem maiores voluptatibus, ducimus inventore dolores expedita vitae
-        molestias beatae libero quos commodi est ut excepturi repellendus
-        officiis quas blanditiis!
+        {comment}
       </p>
     </div>
   );
