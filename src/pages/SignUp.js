@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import useTitles from "../hooks/useTitles";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const { setUser, signInGoogle, updateUserProfile, registerUser } =
@@ -19,8 +20,8 @@ const SignUp = () => {
     signInGoogle()
       .then((result) => {
         setUser(result.user);
-        alert("User Sign");
         navigate(from, { replace: true });
+        toast.success('User Google Sign Successful!')
       })
       .catch((err) => console.log(err.message));
   };
@@ -41,10 +42,12 @@ const SignUp = () => {
         const user = result.user;
         setUser(user);
         navigate(from, { replace: true });
-
+        toast.success('User Email Sign Successful!')
         // Update user profile
         updateUserProfile(name, photo)
-          .then(() => {})
+          .then(() => {
+            toast.success('User Profile Update')
+          })
           .catch((err) => console.log(err.message));
       })
       .catch((err) => console.log(err.message));
