@@ -53,7 +53,8 @@ const SingleService = () => {
         ratings,
         comment,
         email: user?.email,
-        postId: _id
+        postId: _id,
+        time: new Date().toLocaleString()
       })
     })
     .then(res => res.json())
