@@ -1,9 +1,9 @@
-import { Button} from "flowbite-react";
+import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import Ratings from "./Ratings";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
-const Review = ({ review, handleDelete,setVisible }) => {
+const Review = ({ review, handleDelete }) => {
   return (
     <>
       <div className="border-teal-500 mb-4 border p-6 rounded">
@@ -14,12 +14,11 @@ const Review = ({ review, handleDelete,setVisible }) => {
             </h2>
           </Link>
           <Button.Group outline={true}>
-            <Button
-              color="info"
-              onClick={() => setVisible(true)}
-            >
-              <FaEdit />
-            </Button>
+            <Link to={`/my-review/update/${review._id}`}>
+              <Button color="info">
+                <FaEdit />
+              </Button>
+            </Link>
             <Button color="info" onClick={() => handleDelete(review._id)}>
               <FaTrashAlt />
             </Button>

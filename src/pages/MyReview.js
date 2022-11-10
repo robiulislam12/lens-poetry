@@ -9,7 +9,6 @@ const MyReview = () => {
   const { user } = useContext(AuthContext);
 
   const [reviews, setReviews] = useState([]);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     fetch(`https://lens-poetry.vercel.app/review?email=${user?.email}`)
@@ -54,7 +53,6 @@ const MyReview = () => {
             key={review._id}
             handleDelete={handleDelete}
             review={review}
-            setVisible={setVisible}
           />
         ))}
       </div>

@@ -11,6 +11,7 @@ import NotFound from "../pages/NotFound";
 import Services from "../pages/Services";
 import SignUp from "../pages/SignUp";
 import SingleService from "../pages/SingleService";
+import UpdateReview from "../pages/UpdateReview";
 import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
             {
                 path: '/my-review',
                 element: <PrivateRoutes><MyReview/></PrivateRoutes>
+            },
+            {
+                path: '/my-review/update/:id',
+                loader: ({params})=> fetch(`https://lens-poetry.vercel.app/review/update/${params.id}`),
+                element: <PrivateRoutes><UpdateReview/></PrivateRoutes>
             },
             {
                 path: '/add-service',
