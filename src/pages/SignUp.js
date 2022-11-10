@@ -21,7 +21,25 @@ const SignUp = () => {
       .then((result) => {
         setUser(result.user);
         navigate(from, { replace: true });
-        toast.success('User Google Sign Successful!')
+        toast.success("User Google Sign Successful!");
+
+        const currentUser = {
+          email: result.user,
+        };
+
+        // get jwt token
+        fetch("https://lens-poetry.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("lensPoetry-token", data.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((err) => console.log(err.message));
   };
@@ -36,17 +54,34 @@ const SignUp = () => {
     const password = form.password.value;
     const email = form.email.value;
 
-
     registerUser(email, password)
       .then((result) => {
         const user = result.user;
         setUser(user);
         navigate(from, { replace: true });
-        toast.success('User Email Sign Successful!')
+        toast.success("User Email Sign Successful!");
         // Update user profile
         updateUserProfile(name, photo)
           .then(() => {
-            toast.success('User Profile Update')
+            toast.success("User Profile Update");
+
+            const currentUser = {
+              email: user.email,
+            };
+
+            // get jwt token
+            fetch("https://lens-poetry.vercel.app/jwt", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(currentUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                localStorage.setItem("lensPoetry-token", data.token);
+                navigate(from, { replace: true });
+              });
           })
           .catch((err) => console.log(err.message));
       })
@@ -103,7 +138,12 @@ const SignUp = () => {
             <div className="mb-2 block">
               <Label htmlFor="password1" value="Your password" />
             </div>
-            <TextInput id="password1" type="password" required={true} name="password"/>
+            <TextInput
+              id="password1"
+              type="password"
+              required={true}
+              name="password"
+            />
           </div>
           <Button type="submit">Register</Button>
         </form>

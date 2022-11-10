@@ -37,7 +37,8 @@ const SingleService = () => {
     fetch('https://lens-poetry.vercel.app/review', {
       method: "POST",
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem("lensPoetry-token")}`
       },
       body: JSON.stringify({
         postDetails: {
@@ -69,7 +70,11 @@ const SingleService = () => {
   }
 
   useEffect(() => {
-    fetch(`https://lens-poetry.vercel.app/review?postId=${_id}`)
+    fetch(`https://lens-poetry.vercel.app/review?postId=${_id}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("lensPoetry-token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

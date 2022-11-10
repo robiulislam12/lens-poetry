@@ -4,14 +4,17 @@ import toast from "react-hot-toast";
 import Review from "../components/Review";
 import useTitles from "../hooks/useTitles";
 
-
 const MyReview = () => {
   const { user } = useContext(AuthContext);
 
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`https://lens-poetry.vercel.app/review?email=${user?.email}`)
+    fetch(`https://lens-poetry.vercel.app/review?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("lensPoetry-token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -22,6 +25,9 @@ const MyReview = () => {
   const handleDelete = (id) => {
     fetch(`https://lens-poetry.vercel.app/review/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("lensPoetry-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -34,9 +40,7 @@ const MyReview = () => {
   };
 
   // set page titles
-  useTitles('My all Review')
-
-
+  useTitles("My all Review");
 
   return (
     <div className="lg:w-3/4 mx-auto py-12 sm-p-4">

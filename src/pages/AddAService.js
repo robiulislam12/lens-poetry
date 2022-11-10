@@ -18,6 +18,7 @@ const AddAService = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("lensPoetry-token")}`
       },
       body: JSON.stringify({
         title,

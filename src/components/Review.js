@@ -19,9 +19,14 @@ const Review = ({ review, handleDelete }) => {
                 <FaEdit />
               </Button>
             </Link>
-            <Button color="info" onClick={() => handleDelete(review._id)}>
-              <FaTrashAlt />
-            </Button>
+            <>
+              <Button
+                color="failure"
+                onClick={() => handleDelete(review._id)}
+              >
+                <FaTrashAlt />
+              </Button>
+            </>
           </Button.Group>
         </div>
         <Ratings value={review?.ratings} border review={review} />

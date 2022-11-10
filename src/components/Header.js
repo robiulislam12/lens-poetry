@@ -1,4 +1,4 @@
-import { Navbar, Dropdown, Avatar, Button } from "flowbite-react";
+import { Navbar, Dropdown, Avatar, Button, Badge } from "flowbite-react";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
@@ -63,10 +63,6 @@ const Header = () => {
           <Navbar.Link className="font-semibold uppercase">Home</Navbar.Link>
         </Link>
 
-        <Link to="/about">
-          <Navbar.Link className="font-semibold uppercase">About</Navbar.Link>
-        </Link>
-
         <Link to="/services">
           <Navbar.Link className="font-semibold uppercase">
             Services
@@ -75,9 +71,22 @@ const Header = () => {
         <Link to="/blogs">
           <Navbar.Link className="font-semibold uppercase">Blogs</Navbar.Link>
         </Link>
-        <Link to="/contact">
-          <Navbar.Link className="font-semibold uppercase">Contact</Navbar.Link>
-        </Link>
+        {/* Navbar conditional rendering */}
+        {user?.uid && (
+          <>
+            <Link to="my-review">
+              <Navbar.Link className="font-semibold uppercase">
+                My Review
+              </Navbar.Link>
+            </Link>
+            <Link to="add-service">
+              <Navbar.Link className="font-semibold uppercase">
+                Add a Service
+              </Navbar.Link>
+            </Link>
+            <Badge onClick={logOut} className="cursor-pointer">Sign out</Badge>
+          </>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );
